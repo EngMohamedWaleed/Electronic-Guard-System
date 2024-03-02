@@ -16,7 +16,12 @@ class MyTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25.0),
-      child: TextField(
+      child: TextFormField(
+        validator: (value) {
+          if(value.toString().isEmpty){
+            return "This field required";
+          }
+        },
         controller: controller,
         obscureText: obscureText,
         decoration: InputDecoration(
