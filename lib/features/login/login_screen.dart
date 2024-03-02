@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../core/widgets/button.dart';
 import '../../core/widgets/square.dart';
 import '../../core/widgets/text_field.dart';
+import '../register/register_screen.dart';
 
 
 
@@ -28,10 +29,7 @@ class LoginPage extends StatelessWidget {
               const SizedBox(height: 50),
 
               // logo
-              const Icon(
-                Icons.lock,
-                size: 100,
-              ),
+
 
               const SizedBox(height: 50),
 
@@ -132,25 +130,34 @@ class LoginPage extends StatelessWidget {
               ),
 
               const SizedBox(height: 50),
-
-              // not a member? register now
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Not a member?',
-                    style: TextStyle(color: Colors.grey[700]),
-                  ),
-                  const SizedBox(width: 4),
-                  const Text(
-                    'Register now',
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontWeight: FontWeight.bold,
+            InkWell(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterPage() ,));
+              },
+              child:
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: 80,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Not a member?',
+                      style: TextStyle(color: Colors.grey[700]),
                     ),
-                  ),
-                ],
+                    const SizedBox(width: 4),
+                    const Text(
+                      'Register now',
+                      style: TextStyle(
+                        color: Colors.blue,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
               )
+              ,
+            ),
             ],
           ),
         ),
