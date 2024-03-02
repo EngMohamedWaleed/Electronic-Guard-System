@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../core/widgets/button.dart';
 import '../../core/widgets/square.dart';
@@ -78,7 +79,13 @@ class RegisterPage extends StatelessWidget {
 
                     controller: phoneController,
                     hintText: 'Phone',
-                    obscureText: false,
+                    obscureText: false,keyboardType: TextInputType.phone,
+                    inputFormatters:  <TextInputFormatter>[
+                  // for below version 2 use this
+                  FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+            FilteringTextInputFormatter.digitsOnly
+
+            ],
                   ),
 
                   const SizedBox(height: 10),
@@ -103,18 +110,7 @@ class RegisterPage extends StatelessWidget {
                   const SizedBox(height: 10),
 
                   // forgot password?
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(
-                          'Forgot Password?',
-                          style: TextStyle(color: Colors.grey[600]),
-                        ),
-                      ],
-                    ),
-                  ),
+
 
                   const SizedBox(height: 25),
 

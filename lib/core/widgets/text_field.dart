@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class MyTextField extends StatelessWidget {
   final controller;
   final String hintText;
   final bool obscureText;
+  final List<TextInputFormatter>? inputFormatters ;
+  final TextInputType? keyboardType ;
 
   const MyTextField({
     super.key,
     required this.controller,
     required this.hintText,
     required this.obscureText,
+    this.inputFormatters,
+    this.keyboardType,
   });
 
   @override
@@ -17,6 +22,7 @@ class MyTextField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25.0),
       child: TextFormField(
+keyboardType: keyboardType,
         validator: (value) {
           if(value.toString().isEmpty){
             return "This field required";
@@ -24,6 +30,8 @@ class MyTextField extends StatelessWidget {
         },
         controller: controller,
         obscureText: obscureText,
+        inputFormatters: inputFormatters,
+
         decoration: InputDecoration(
             enabledBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Colors.white),
