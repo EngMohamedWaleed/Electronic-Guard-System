@@ -3,6 +3,7 @@
 // import 'package:untitled2/core/widgets/text_field.dart';
 
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -30,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
         },
       ),
     )
-    ..loadRequest(Uri.parse("http://192.168.1.10"));
+    ..loadRequest(Uri.parse("http://192.168.1.10/"));
 
   @override
   Widget build(BuildContext context) {
@@ -38,25 +39,78 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
-                width: MediaQuery.of(context).size.width,
-                height: 300,
-               padding: EdgeInsets.all(10),
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10) , color: Colors.amber),
-                child: Column(
-                  children: [
-                    Text("Camera One"),
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 250,
-                      child: WebViewWidget(
-                        controller: _controller,
-                      ),
-                    ),
-                  ],
-                ),
+              SizedBox(height: 40),
+
+              ElevatedButton(
+                child: Text('Open URL'),
+                onPressed: () async {
+                  const url = 'http://192.168.1.10/';
+                  if (await canLaunch(url)) {
+                    await launch(url);
+                  } else {
+                    throw 'Could not launch $url';
+                  }
+                },
               ),
+              SizedBox(height: 40),
+
+              ElevatedButton(
+                child: Text('Open URL'),
+                onPressed: () async {
+                  const url = 'http://192.168.1.10/';
+                  if (await canLaunch(url)) {
+                    await launch(url);
+                  } else {
+                    throw 'Could not launch $url';
+                  }
+                },
+              ),
+              SizedBox(height: 40),
+
+              ElevatedButton(
+                child: Text('Open URL'),
+                onPressed: () async {
+                  const url = 'http://192.168.1.10/';
+                  if (await canLaunch(url)) {
+                    await launch(url);
+                  } else {
+                    throw 'Could not launch $url';
+                  }
+                },
+              ),
+              SizedBox(height: 40),
+              ElevatedButton(
+                child: Text('Open URL'),
+                onPressed: () async {
+                  const url = 'http://192.168.1.10/';
+                  if (await canLaunch(url)) {
+                    await launch(url);
+                  } else {
+                    throw 'Could not launch $url';
+                  }
+                },
+              ),
+              // Container(
+              //   width: MediaQuery.of(context).size.width,
+              //   height: 300,
+              //  padding: EdgeInsets.all(10),
+              //   decoration: BoxDecoration(borderRadius: BorderRadius.circular(10) , color: Colors.amber),
+              //   child: Column(
+              //     children: [
+              //       Text("Camera One"),
+              //       Container(
+              //         width: MediaQuery.of(context).size.width,
+              //         height: 250,
+              //         child: WebViewWidget(
+              //           controller: _controller,
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
             ],
           ),
         ),
