@@ -17,125 +17,128 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
           body: Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                 SizedBox(height: 40),
-
-              ElevatedButton(
-                child: Text('Open URL'),
-                onPressed: () async {
-                  const url = 'http://192.168.1.10/';
-                  if (await canLaunch(url)) {
-                    await launch(url);
-                  } else {
-                    throw 'Could not launch $url';
-                  }
-                },
-              ),
-              SizedBox(height: 40),
-
-              ElevatedButton(
-                child: Text('Open URL'),
-                onPressed: () async {
-                  const url = 'http://192.168.1.10/';
-                  if (await canLaunch(url)) {
-                    await launch(url);
-                  } else {
-                    throw 'Could not launch $url';
-                  }
-                },
-              ),
-              SizedBox(height: 40),
-
-              ElevatedButton(
-                child: Text('Open URL'),
-                onPressed: () async {
-                  const url = 'http://192.168.1.10/';
-                  if (await canLaunch(url)) {
-                    await launch(url);
-                  } else {
-                    throw 'Could not launch $url';
-                  }
-                },
-              ),
-              SizedBox(height: 40),
-              ElevatedButton(
-                child: Text('Open URL'),
-                onPressed: () async {
-                  const url = 'http://192.168.1.10/';
-                  if (await canLaunch(url)) {
-                    await launch(url);
-                  } else {
-                    throw 'Could not launch $url';
-                  }
-                },
-              ),
-                SizedBox(
-                  height: 30,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: 10),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        "Hello, Ibrahim",
-                        style: AppTextStyles.headtext,
-                      ),
-                      Text(
-                        "Welcome to the Electronic Guard System",
-                        style: AppTextStyles.headtext.copyWith(
-                            color: Colors.grey,
-                            fontSize: 15,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    ],
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                   
+                  SizedBox(
+                    height: 30,
                   ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 10),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "Hello, Ibrahim",
+                          style: AppTextStyles.headtext,
+                        ),
+                        Text(
+                          "Welcome to the Electronic Guard System",
+                          style: AppTextStyles.headtext.copyWith(
+                              color: Colors.grey,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w400),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  const CustomeHomeCard(),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  HomeViewRoomsCard(
+                    width: 10000,
+                    onTap: null,
+                    roomTitle: "Total Rooms",
+                    description: "12",
+                    isMainWidget: true,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  SizedBox(height: 40),
+            
+                ElevatedButton(
+                  child: Text('Open URL'),
+                  onPressed: () async {
+                    const url = 'http://192.168.1.10/';
+                    if (await canLaunch(url)) {
+                      await launch(url);
+                    } else {
+                      throw 'Could not launch $url';
+                    }
+                  },
                 ),
-                const SizedBox(
-                  height: 15,
+                SizedBox(height: 40),
+            
+                ElevatedButton(
+                  child: Text('Open URL'),
+                  onPressed: () async {
+                    const url = 'http://192.168.1.10/';
+                    if (await canLaunch(url)) {
+                      await launch(url);
+                    } else {
+                      throw 'Could not launch $url';
+                    }
+                  },
                 ),
-                const CustomeHomeCard(),
-                const SizedBox(
-                  height: 15,
+                SizedBox(height: 40),
+            
+                ElevatedButton(
+                  child: Text('Open URL'),
+                  onPressed: () async {
+                    const url = 'http://192.168.1.10/';
+                    if (await canLaunch(url)) {
+                      await launch(url);
+                    } else {
+                      throw 'Could not launch $url';
+                    }
+                  },
                 ),
-                HomeViewRoomsCard(
-                  width: 10000,
-                  onTap: null,
-                  roomTitle: "Total Rooms",
-                  description: "12",
-                  isMainWidget: true,
+                SizedBox(height: 40),
+                ElevatedButton(
+                  child: Text('Open URL'),
+                  onPressed: () async {
+                    const url = 'http://192.168.1.10/';
+                    if (await canLaunch(url)) {
+                      await launch(url);
+                    } else {
+                      throw 'Could not launch $url';
+                    }
+                  },
                 ),
-                SizedBox(
-                  height: 20,
-                ),
-                Expanded(
-                    child: GridView.builder(
-                      physics: BouncingScrollPhysics(),
-                      itemCount: 8,
-                      itemBuilder: (context, index) => HomeViewRoomsCard(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => MyHomePage(),
-                              ));
-                        },
-                        roomTitle: "Room- ${index + 1}",
-                        isMainWidget: false,
-                        description: "",
-                        width: 150,
-                      ),
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 20,
-                          mainAxisSpacing: 8,
-                          childAspectRatio: 1.5 / 0.6),
-                    ))
-              ],
+                  // Expanded(
+                  //     child: GridView.builder(
+                  //       physics: BouncingScrollPhysics(),
+                  //       itemCount: 8,
+                  //       itemBuilder: (context, index) => HomeViewRoomsCard(
+                  //         onTap: () {
+                  //           Navigator.push(
+                  //               context,
+                  //               MaterialPageRoute(
+                  //                 builder: (context) => MyHomePage(),
+                  //               ));
+                  //         },
+                  //         roomTitle: "Room- ${index + 1}",
+                  //         isMainWidget: false,
+                  //         description: "",
+                  //         width: 150,
+                  //       ),
+                  //       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  //           crossAxisCount: 2,
+                  //           crossAxisSpacing: 20,
+                  //           mainAxisSpacing: 8,
+                  //           childAspectRatio: 1.5 / 0.6),
+                  //     ))
+                ],
+              ),
             ),
           )),
     );
