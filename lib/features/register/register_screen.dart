@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -7,35 +10,69 @@ import '../../core/widgets/text_field.dart';
 import '../home/home_screen.dart';
 import '../login/login_screen.dart';
 
-
-
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends StatefulWidget {
   RegisterPage({super.key});
 
+  @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
   // text editing controllers
   final usernameController = TextEditingController();
+
   final passwordController = TextEditingController();
+
   final confirmPasswordController = TextEditingController();
+
   final phoneController = TextEditingController();
+
   final _formKey = GlobalKey<FormState>();
 
-
   // sign user in method
-  void signUserUp(context) {
-
-   if(confirmPasswordController.text !=passwordController.text){
-     ScaffoldMessenger.of(context).showSnackBar( SnackBar(
-       backgroundColor: Colors.red.shade900,
-       content: Text("Invalid Confirm Password"),
-     ));
-   }else{
-     if(_formKey.currentState!.validate()){
-       Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen() ,));
-
-     }
-   }
-
-
+  Future<void> signUserUp(context) async {
+    if (confirmPasswordController.text != passwordController.text) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        backgroundColor: Colors.red.shade900,
+        content: Text("Invalid Confirm Password"),
+      ));
+    } else {
+      if (_formKey.currentState!.validate()) {
+        try {
+          await FirebaseAuth.instance
+              .createUserWithEmailAndPassword(
+            email: usernameController.text.toString().trim(),
+            password: passwordController.text.toString().trim(),
+          )
+              .then((value) {
+            if (value.additionalUserInfo!.isNewUser == true) {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                backgroundColor: Colors.green,
+                content: Text("Success"),
+              ));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const HomeScreen(),
+                  ));
+            }
+          });
+        } catch (e) {
+          log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>${e.toString()}");
+          if (e.toString().contains("already") == true) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              backgroundColor: Colors.red,
+              content: Text("The email address is already Used"),
+            ));
+          }else{
+             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              backgroundColor: Colors.red,
+              content: Text("Something Went Error , Check your internet Connection"),
+            ));
+          }
+        }
+      }
+    }
   }
 
   @override
@@ -46,7 +83,7 @@ class RegisterPage extends StatelessWidget {
         child: Center(
           child: SingleChildScrollView(
             child: Form(
-              key:_formKey ,
+              key: _formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -76,16 +113,15 @@ class RegisterPage extends StatelessWidget {
                   const SizedBox(height: 10),
 
                   MyTextField(
-
                     controller: phoneController,
                     hintText: 'Phone',
-                    obscureText: false,keyboardType: TextInputType.phone,
-                    inputFormatters:  <TextInputFormatter>[
-                  // for below version 2 use this
-                  FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-            FilteringTextInputFormatter.digitsOnly
-
-            ],
+                    obscureText: false,
+                    keyboardType: TextInputType.phone,
+                    inputFormatters: <TextInputFormatter>[
+                      // for below version 2 use this
+                      FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                      FilteringTextInputFormatter.digitsOnly
+                    ],
                   ),
 
                   const SizedBox(height: 10),
@@ -97,20 +133,16 @@ class RegisterPage extends StatelessWidget {
                     obscureText: true,
                   ),
                   const SizedBox(height: 10),
- MyTextField(
+                  MyTextField(
                     controller: confirmPasswordController,
                     hintText: 'Confirm Password',
                     obscureText: true,
                   ),
                   const SizedBox(height: 10),
 
-
-
-
                   const SizedBox(height: 10),
 
                   // forgot password?
-
 
                   const SizedBox(height: 25),
 
@@ -168,35 +200,35 @@ class RegisterPage extends StatelessWidget {
                   ),
 
                   const SizedBox(height: 50),
-                  InkWell
-                    (
-                    onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage() ,));
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => LoginPage(),
+                          ));
                     },
-                    child:
-
-                       Container(
-                         width: MediaQuery.of(context).size.width,
-                        height: 80,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'have an account?',
-                              style: TextStyle(color: Colors.grey[700]),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 80,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'have an account?',
+                            style: TextStyle(color: Colors.grey[700]),
+                          ),
+                          const SizedBox(width: 4),
+                          const Text(
+                            'Login now',
+                            style: TextStyle(
+                              color: Colors.blue,
+                              fontWeight: FontWeight.bold,
                             ),
-                            const SizedBox(width: 4),
-                            const Text(
-                              'Login now',
-                              style: TextStyle(
-                                color: Colors.blue,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-
+                    ),
                   ),
                 ],
               ),
