@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../../core/widgets/button.dart';
 import '../../core/widgets/square.dart';
 import '../../core/widgets/text_field.dart';
+import '../../main.dart';
 import '../home/home_screen.dart';
 import '../register/register_screen.dart';
 
@@ -33,7 +34,8 @@ class _LoginPageState extends State<LoginPage> {
           email: usernameController.text.toString().trim(),
           password: passwordController.text.toString().trim(),
         )
-            .then((value) {
+            .then((value) async {
+          await prefs!.setString("isLogin", "true");
           Navigator.push(
               context,
               MaterialPageRoute(
@@ -42,10 +44,10 @@ class _LoginPageState extends State<LoginPage> {
         });
       } catch (e) {
         if (e.toString().contains("incorrect") == true) {
-           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              backgroundColor: Colors.red,
-              content: Text("Invalid user name or Password"),
-            ));
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            backgroundColor: Colors.red,
+            content: Text("Invalid user name or Password"),
+          ));
         }
         log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>${e.toString()}");
       }

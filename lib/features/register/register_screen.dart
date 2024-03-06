@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import '../../core/widgets/button.dart';
 import '../../core/widgets/square.dart';
 import '../../core/widgets/text_field.dart';
+import '../../main.dart';
 import '../home/home_screen.dart';
 import '../login/login_screen.dart';
 
@@ -44,8 +45,9 @@ class _RegisterPageState extends State<RegisterPage> {
             email: usernameController.text.toString().trim(),
             password: passwordController.text.toString().trim(),
           )
-              .then((value) {
+              .then((value) async {
             if (value.additionalUserInfo!.isNewUser == true) {
+          await prefs!.setString("isLogin", "true");
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 backgroundColor: Colors.green,
                 content: Text("Success"),
@@ -64,10 +66,11 @@ class _RegisterPageState extends State<RegisterPage> {
               backgroundColor: Colors.red,
               content: Text("The email address is already Used"),
             ));
-          }else{
-             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               backgroundColor: Colors.red,
-              content: Text("Something Went Error , Check your internet Connection"),
+              content:
+                  Text("Something Went Error , Check your internet Connection"),
             ));
           }
         }
