@@ -1,6 +1,11 @@
+import 'dart:developer';
+
+import 'package:elegant_notification/elegant_notification.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vlc_player/flutter_vlc_player.dart';
 import 'package:untitled2/core/widgets/text_field.dart';
+import 'package:untitled2/main.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -12,6 +17,27 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   String ipUrl = 'http://192.168.1.10/';
+
+  @override
+  void initState() {
+    super.initState();
+    FirebaseMessaging.onMessage.listen((value) {
+      ElegantNotification.success(
+        width: 360,
+        title: Text(value.notification!.title.toString()),
+        description: Text(value.notification!.body.toString()),
+        toastDuration: const Duration(seconds: 8),
+        onDismiss: () {
+          //Message when the notification is dismissed
+        },
+        autoDismiss: true,
+        
+      ).show(context);
+    });
+    FirebaseMessaging.onMessageOpenedApp.listen((value) {
+        showFlutterNotification(value);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ElevatedButton(
                 child: Text('Open URL'),
                 onPressed: () async {
-                   if (await canLaunch(ipUrl)) {
+                  if (await canLaunch(ipUrl)) {
                     await launch(ipUrl);
                   } else {
                     throw 'Could not launch $ipUrl';
@@ -93,7 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ElevatedButton(
                 child: Text('Open URL'),
                 onPressed: () async {
-                   if (await canLaunch(ipUrl)) {
+                  if (await canLaunch(ipUrl)) {
                     await launch(ipUrl);
                   } else {
                     throw 'Could not launch $ipUrl';
@@ -104,7 +130,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ElevatedButton(
                 child: Text('Open URL'),
                 onPressed: () async {
-                   if (await canLaunch(ipUrl)) {
+                  if (await canLaunch(ipUrl)) {
                     await launch(ipUrl);
                   } else {
                     throw 'Could not launch $ipUrl';

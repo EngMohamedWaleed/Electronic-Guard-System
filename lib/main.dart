@@ -60,10 +60,10 @@ Future<void> setupFlutterNotifications() async {
 void showFlutterNotification(RemoteMessage message) {
   RemoteNotification? notification = message.notification;
   AndroidNotification? android = message.notification?.android;
-  if (notification != null && android != null) {
+  // if (notification != null && android != null) {
     flutterLocalNotificationsPlugin.show(
       notification.hashCode,
-      notification.title,
+      notification!.title,
       notification.body,
       NotificationDetails(
         android: AndroidNotificationDetails(
@@ -76,19 +76,22 @@ void showFlutterNotification(RemoteMessage message) {
         ),
       ),
     );
-  }
+  // }
 }
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+
   await setupFlutterNotifications();
 
   prefs = await SharedPreferences.getInstance();
   if (prefs!.getString("isLogin") == null) {
     prefs!.setString("isLogin", "false");
   }
+
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  
   runApp(const MyApp());
 }
 
