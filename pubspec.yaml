@@ -45,6 +45,8 @@ dependencies:
   shared_preferences: 
   webview_flutter: 
   url_launcher: ^6.0.12
+  firebase_messaging: 
+  flutter_local_notifications: 
 
 
 
