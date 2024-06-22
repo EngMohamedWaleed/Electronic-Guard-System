@@ -11,136 +11,133 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  String ipUrl = 'http://192.168.1.10/';
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
           body: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                   
-                  SizedBox(
-                    height: 30,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 10),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          "Hello, Ibrahim",
-                          style: AppTextStyles.headtext,
-                        ),
-                        Text(
-                          "Welcome to the Electronic Guard System",
-                          style: AppTextStyles.headtext.copyWith(
-                              color: Colors.grey,
-                              fontSize: 15,
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  const CustomeHomeCard(),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  HomeViewRoomsCard(
-                    width: 10000,
-                    onTap: null,
-                    roomTitle: "Total Rooms",
-                    description: "12",
-                    isMainWidget: true,
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  SizedBox(height: 40),
-            
-                ElevatedButton(
-                  child: Text('Open URL'),
-                  onPressed: () async {
-                    const url = 'http://192.168.1.10/';
-                    if (await canLaunch(url)) {
-                      await launch(url);
-                    } else {
-                      throw 'Could not launch $url';
-                    }
-                  },
-                ),
-                SizedBox(height: 40),
-            
-                ElevatedButton(
-                  child: Text('Open URL'),
-                  onPressed: () async {
-                    const url = 'http://192.168.1.10/';
-                    if (await canLaunch(url)) {
-                      await launch(url);
-                    } else {
-                      throw 'Could not launch $url';
-                    }
-                  },
-                ),
-                SizedBox(height: 40),
-            
-                ElevatedButton(
-                  child: Text('Open URL'),
-                  onPressed: () async {
-                    const url = 'http://192.168.1.10/';
-                    if (await canLaunch(url)) {
-                      await launch(url);
-                    } else {
-                      throw 'Could not launch $url';
-                    }
-                  },
-                ),
-                SizedBox(height: 40),
-                ElevatedButton(
-                  child: Text('Open URL'),
-                  onPressed: () async {
-                    const url = 'http://192.168.1.10/';
-                    if (await canLaunch(url)) {
-                      await launch(url);
-                    } else {
-                      throw 'Could not launch $url';
-                    }
-                  },
-                ),
-                  // Expanded(
-                  //     child: GridView.builder(
-                  //       physics: BouncingScrollPhysics(),
-                  //       itemCount: 8,
-                  //       itemBuilder: (context, index) => HomeViewRoomsCard(
-                  //         onTap: () {
-                  //           Navigator.push(
-                  //               context,
-                  //               MaterialPageRoute(
-                  //                 builder: (context) => MyHomePage(),
-                  //               ));
-                  //         },
-                  //         roomTitle: "Room- ${index + 1}",
-                  //         isMainWidget: false,
-                  //         description: "",
-                  //         width: 150,
-                  //       ),
-                  //       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  //           crossAxisCount: 2,
-                  //           crossAxisSpacing: 20,
-                  //           mainAxisSpacing: 8,
-                  //           childAspectRatio: 1.5 / 0.6),
-                  //     ))
-                ],
+        padding: EdgeInsets.symmetric(horizontal: 20.0),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 30,
               ),
-            ),
-          )),
+              Padding(
+                padding: EdgeInsets.only(left: 10),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "Hello, Ibrahim",
+                      style: AppTextStyles.headtext,
+                    ),
+                    Text(
+                      "Welcome to the Electronic Guard System",
+                      style: AppTextStyles.headtext.copyWith(
+                          color: Colors.grey,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              const CustomeHomeCard(),
+              const SizedBox(
+                height: 15,
+              ),
+              HomeViewRoomsCard(
+                width: 10000,
+                onTap: null,
+                roomTitle: "Total Rooms",
+                description: "12",
+                isMainWidget: true,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              SizedBox(height: 40),
+
+              ElevatedButton(
+                child: Text('Open URL'),
+                onPressed: () async {
+                  if (await canLaunch(ipUrl)) {
+                    await launch(ipUrl);
+                  } else {
+                    throw 'Could not launch $ipUrl';
+                  }
+                },
+              ),
+              SizedBox(height: 40),
+
+              ElevatedButton(
+                child: Text('Open URL'),
+                onPressed: () async {
+                   if (await canLaunch(ipUrl)) {
+                    await launch(ipUrl);
+                  } else {
+                    throw 'Could not launch $ipUrl';
+                  }
+                },
+              ),
+              SizedBox(height: 40),
+
+              ElevatedButton(
+                child: Text('Open URL'),
+                onPressed: () async {
+                   if (await canLaunch(ipUrl)) {
+                    await launch(ipUrl);
+                  } else {
+                    throw 'Could not launch $ipUrl';
+                  }
+                },
+              ),
+              SizedBox(height: 40),
+              ElevatedButton(
+                child: Text('Open URL'),
+                onPressed: () async {
+                   if (await canLaunch(ipUrl)) {
+                    await launch(ipUrl);
+                  } else {
+                    throw 'Could not launch $ipUrl';
+                  }
+                },
+              ),
+              // Expanded(
+              //     child: GridView.builder(
+              //       physics: BouncingScrollPhysics(),
+              //       itemCount: 8,
+              //       itemBuilder: (context, index) => HomeViewRoomsCard(
+              //         onTap: () {
+              //           Navigator.push(
+              //               context,
+              //               MaterialPageRoute(
+              //                 builder: (context) => MyHomePage(),
+              //               ));
+              //         },
+              //         roomTitle: "Room- ${index + 1}",
+              //         isMainWidget: false,
+              //         description: "",
+              //         width: 150,
+              //       ),
+              //       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              //           crossAxisCount: 2,
+              //           crossAxisSpacing: 20,
+              //           mainAxisSpacing: 8,
+              //           childAspectRatio: 1.5 / 0.6),
+              //     ))
+            ],
+          ),
+        ),
+      )),
     );
   }
 }
@@ -167,7 +164,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void dispose() {
-    _videoPlayerController.dispose(); // Dispose the controller to release resources
+    _videoPlayerController
+        .dispose(); // Dispose the controller to release resources
     super.dispose();
   }
 
@@ -189,11 +187,11 @@ class _MyHomePageState extends State<MyHomePage> {
 class HomeViewRoomsCard extends StatefulWidget {
   const HomeViewRoomsCard(
       {super.key,
-        required this.width,
-        required this.description,
-        this.isMainWidget = false,
-        required this.roomTitle,
-        required this.onTap});
+      required this.width,
+      required this.description,
+      this.isMainWidget = false,
+      required this.roomTitle,
+      required this.onTap});
   final double width;
   final String roomTitle;
 
@@ -221,10 +219,10 @@ class _HomeViewRoomsCardState extends State<HomeViewRoomsCard> {
             boxShadow: [
               widget.isMainWidget
                   ? BoxShadow(
-                color: Colors.grey.withOpacity(0.2),
-                spreadRadius: 10,
-                blurRadius: 10,
-              )
+                      color: Colors.grey.withOpacity(0.2),
+                      spreadRadius: 10,
+                      blurRadius: 10,
+                    )
                   : BoxShadow()
             ]),
         child: Row(
@@ -237,7 +235,6 @@ class _HomeViewRoomsCardState extends State<HomeViewRoomsCard> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  
                   Text(
                     widget.roomTitle,
                     style: AppTextStyles.headtext.copyWith(
@@ -249,29 +246,29 @@ class _HomeViewRoomsCardState extends State<HomeViewRoomsCard> {
                   ),
                   widget.isMainWidget
                       ? Text(
-                    "12",
-                    style: AppTextStyles.headtext.copyWith(
-                        color: Colors.green,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600),
-                  )
+                          "12",
+                          style: AppTextStyles.headtext.copyWith(
+                              color: Colors.green,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600),
+                        )
                       : SizedBox.shrink()
                 ],
               ),
             ),
             widget.isMainWidget
                 ? Container(
-              height: 10,
-              width: 10,
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.green.withOpacity(0.2)),
-              child: const Icon(
-                Icons.home,
-                color: Colors.green,
-                size: 40,
-              ),
-            )
+                    height: 10,
+                    width: 10,
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.green.withOpacity(0.2)),
+                    child: const Icon(
+                      Icons.home,
+                      color: Colors.green,
+                      size: 40,
+                    ),
+                  )
                 : SizedBox.shrink()
           ],
         ),
@@ -364,28 +361,28 @@ class SetupView extends StatelessWidget {
           children: [
             Expanded(
                 child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  child: GridView.builder(
-                    physics: BouncingScrollPhysics(),
-                    itemCount: rooms.length,
-                    itemBuilder: (context, index) => RoomCard(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => RoomInputData(),
-                            ));
-                      },
-                      title: rooms[index].title,
-                      icon: rooms[index].icon,
-                    ),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 20,
-                      mainAxisSpacing: 22,
-                    ),
-                  ),
-                ))
+              margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              child: GridView.builder(
+                physics: BouncingScrollPhysics(),
+                itemCount: rooms.length,
+                itemBuilder: (context, index) => RoomCard(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => RoomInputData(),
+                        ));
+                  },
+                  title: rooms[index].title,
+                  icon: rooms[index].icon,
+                ),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 20,
+                  mainAxisSpacing: 22,
+                ),
+              ),
+            ))
           ],
         ),
       ),
@@ -596,9 +593,9 @@ List<RoomModel> rooms = [
 class RoomCard extends StatelessWidget {
   const RoomCard(
       {super.key,
-        required this.icon,
-        required this.title,
-        required this.onTap});
+      required this.icon,
+      required this.title,
+      required this.onTap});
   final String title;
   final IconData icon;
   final Function()? onTap;
@@ -642,7 +639,7 @@ class RoomCard extends StatelessWidget {
 
 abstract class AppTextStyles {
   static const TextStyle headtext =
-  TextStyle(color: Colors.black, fontSize: 30, fontWeight: FontWeight.w600);
+      TextStyle(color: Colors.black, fontSize: 30, fontWeight: FontWeight.w600);
 }
 
 class CustomElevatedButon extends StatelessWidget {
@@ -652,10 +649,10 @@ class CustomElevatedButon extends StatelessWidget {
   final Color titleColor;
   const CustomElevatedButon(
       {super.key,
-        required this.onTap,
-        required this.buttonTitle,
-        required this.backgroundColor,
-        required this.titleColor});
+      required this.onTap,
+      required this.buttonTitle,
+      required this.backgroundColor,
+      required this.titleColor});
 
   @override
   Widget build(BuildContext context) {
